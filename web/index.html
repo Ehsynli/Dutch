@@ -5,12 +5,15 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="theme-color" content="#f8faf8">
 <title>Dutch Learning</title>
+<link rel="icon" type="image/png" href="app-icon-192.png">
 <style>
 *{box-sizing:border-box}
 :root{font-family:system-ui,sans-serif;color:#203e30;background:#f8faf8}
 body{margin:0}
 main{width:min(100%,40rem);margin:auto;padding:2rem clamp(1rem,5vw,2.5rem) calc(7rem + env(safe-area-inset-bottom))}
 .brand{display:flex;align-items:center;gap:.65rem;font-size:.875rem;font-weight:800;letter-spacing:.15em}
+.notification-link{margin-inline-start:auto;width:2.5rem;height:2.5rem;display:grid;place-items:center;border-radius:50%;color:#214b39;border:1px solid #d5e5d8;background:#eff6ee}
+.notification-link svg{width:1.2rem;height:1.2rem}
 .flag{font-size:1.3rem;letter-spacing:0}
 header{margin:2rem 0 1.7rem}
 h1{font-size:clamp(2.7rem,9vw,4.5rem);letter-spacing:-.065em;line-height:1.05;margin:0 0 .65rem}
@@ -102,7 +105,7 @@ legend{font-weight:750}
 #reading-gloss button{margin:0;padding:.25rem .6rem}
 #reading-gloss h2{font-size:1.1rem;margin:.2rem 0 .5rem}
 .nastya-nav{width:min(100%,40rem);margin:auto;padding:.35rem .8rem 0}
-.nastya-nav a{display:block;border:1px solid #d5e5d8;background:#eff6ee;border-radius:.7rem;padding:.45rem .8rem;color:#203e30;text-decoration:none;font-weight:700}
+.nastya-nav a{border:1px solid #d5e5d8;background:#eff6ee;border-radius:.7rem;min-height:3rem;display:flex;align-items:center;padding:.6rem .85rem;color:#596e61;text-decoration:none;font-weight:400}
 main{padding-bottom:calc(10rem + env(safe-area-inset-bottom))}
 #nastya-connect input:not([type=checkbox]){display:block;width:100%;border:1px solid #a9beae;border-radius:.65rem;padding:.55rem;margin:.35rem 0 .65rem;font:inherit}
 body.nastya-open{background:#edf3ee;overflow:hidden}
@@ -111,7 +114,25 @@ body.nastya-open{background:#edf3ee;overflow:hidden}
 .nastya-screen{display:grid;grid-template-rows:auto minmax(0,1fr) auto;height:100dvh;background:#edf3ee}
 .nastya-header{display:flex;align-items:center;gap:.75rem;margin:0;padding:calc(.65rem + env(safe-area-inset-top)) 1rem .65rem;background:#214b39;color:#fff}
 .nastya-header a{color:inherit;text-decoration:none;font-size:1.6rem;padding:.15rem .35rem}
-.nastya-avatar{display:grid;place-items:center;width:2.2rem;height:2.2rem;border-radius:50%;background:#d8eadc;color:#214b39;font-weight:800}
+.nastya-avatar{width:2.65rem;height:2.65rem;border-radius:50%;object-fit:cover;object-position:center;flex:none}
+.nastya-identity{display:grid;gap:.08rem}
+.nastya-online{font-size:.8rem;color:#d0e9d6}
+#view.nastya-enter{animation:nastya-slide-in .28s ease-out both}
+@keyframes nastya-slide-in{from{transform:translateX(100%)}to{transform:translateX(0)}}
+@media(prefers-reduced-motion:reduce){#view.nastya-enter{animation:none}}
+.nastya-header .nastya-task-link{margin-inline-start:auto;font-size:.9rem;font-weight:700;padding:.5rem}
+#nastya-task input{display:block;width:100%;border:1px solid #a9beae;border-radius:.65rem;padding:.55rem;margin:.35rem 0 .65rem;font:inherit}
+.nastya-feed-list{list-style:none;padding:0;margin:0}
+.nastya-feed-list li{padding:.7rem 0;white-space:pre-wrap;overflow-wrap:anywhere}
+#notification-archive summary{cursor:pointer;font-weight:700}
+#notification-read-list{margin-top:.7rem}
+.notification-list button{width:100%;margin:0;text-align:left;background:#f3f8f3;display:flex;flex-wrap:wrap;justify-content:space-between;gap:.35rem .65rem}
+.notification-list button span{font-size:.85rem;color:#596e61}
+#notification-detail{width:min(36rem,calc(100% - 2rem));max-height:85dvh;border:1px solid #d5e5d8;border-radius:1rem;padding:1rem;color:#203e30}
+#notification-detail::backdrop{background:#182f3c50}
+#notification-detail form{float:right}
+#notification-detail-text{white-space:pre-wrap;overflow-wrap:anywhere}
+.nastya-feed-list li+li{border-top:1px solid #d5e5d8}
 .nastya-header h1{font-size:1.15rem;letter-spacing:0;margin:0}
 .nastya-chat{overflow:auto;overscroll-behavior:contain;padding:1rem;display:flex;flex-direction:column;gap:.6rem}
 .nastya-chat p{max-width:85%;padding:.65rem .85rem;border-radius:1rem;white-space:pre-wrap;overflow-wrap:anywhere;color:#203e30;flex:none}
@@ -158,7 +179,7 @@ body.nastya-open{background:#edf3ee;overflow:hidden}
 <symbol id="person" viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 21v-1a8 6 0 0 1 16 0v1"/></symbol>
 </svg>
 <main>
-<div class="brand"><span>DUTCH LEARNING</span><span class="flag" role="img" aria-label="Niderland bayrağı">🇳🇱</span></div>
+<div class="brand"><span>DUTCH LEARNING</span><span class="flag" role="img" aria-label="Niderland bayrağı">🇳🇱</span><a class="notification-link" href="#notifications" aria-label="Bildirişlər"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 8a6 6 0 0 0-12 0c0 7-2 7-2 9h16c0-2-2-2-2-9M10 21h4"/></svg></a></div>
 <div id="view"></div>
 </main>
 <nav aria-label="Əsas naviqasiya"><div class="nastya-nav"><a href="#nastya">Ask Nastya</a></div><div class="nav-inner" id="nav"></div></nav>
@@ -179,12 +200,17 @@ const title = (heading, subtitle = '') => '<header><h1 tabindex="-1">' + heading
 const pages = {
   vocabulary: vocabularyPage,
   nastya: nastyaPage,
+  notifications: nastyaNotificationsPage,
+  tasks: nastyaTasksPage,
   exercises: exercisePage,
   progress: progressPage,
   home: () => title('<span lang="nl">Welkom!</span>', 'Holland dilini birlikdə öyrənək.') + '<section class="grid" aria-label="Dərs bölmələri">' + menus.map(([key, label, symbol]) => '<a class="tile ' + key + '" href="#' + key + '">' + icon(symbol) + '<span>' + label + '</span></a>').join('') + '</section>' + progressCards(),
   grammar: title('Grammar', 'İndiki zaman') + '<section class="card"><h2 lang="nl">Leren</h2><dl><div><dt lang="nl">ik</dt><dd lang="nl">leer</dd></div><div><dt lang="nl">jij / hij / zij</dt><dd lang="nl">leert</dd></div><div><dt lang="nl">wij / jullie / zij</dt><dd lang="nl">leren</dd></div></dl></section>',
   reading: readingPage,
-  profile: () => title('Profile') + nastyaSettings() + '<section class="card"><dl><div><dt>Öyrəndiyin dil</dt><dd>Holland dili</dd></div><div><dt>Nümunə gündəlik hədəf</dt><dd>20 söz</dd></div></dl></section>'
+  profile: () => title('Profile') +
+    (window.AndroidReading ? '<section class="card"><h2>Telefon bildirişləri</h2>' +
+      '<button type="button" id="android-enable-push">Bildirişlərə icazə ver</button>' +
+      '<button type="button" id="android-copy-token">Sınaq tokenini kopyala</button></section>' : '') + nastyaSettings() + '<section class="card"><dl><div><dt>Öyrəndiyin dil</dt><dd>Holland dili</dd></div><div><dt>Nümunə gündəlik hədəf</dt><dd>20 söz</dd></div></dl></section>'
 };
 const view = document.getElementById('view');
 const nav = document.getElementById('nav');
@@ -193,9 +219,15 @@ function render(focusHeading = false) {
   const reading = requested === 'reading-generated' ? generatedStory : readingById.get(requested);
   const page = reading ? 'reading' : Object.hasOwn(pages, requested) ? requested : 'home';
   view.innerHTML = reading ? readingDetail(reading) : typeof pages[page] === 'function' ? pages[page]() : pages[page];
+  view.classList.toggle('nastya-enter', page === 'nastya');
   document.body.classList.toggle('nastya-open', page === 'nastya');
+  try {
+    if (page === 'nastya') localStorage.setItem('dutch-resume-nastya', '1');
+    else localStorage.removeItem('dutch-resume-nastya');
+  } catch {}
   if (page === 'vocabulary') syncSelection();
   if (page === 'nastya') scrollNastyaChat();
+  if (page === 'tasks' || page === 'notifications') loadNastyaFeed(page);
   nav.innerHTML = navigation.map(([key, label, symbol]) => '<a href="#' + key + '"' + (key === page ? ' aria-current="page"' : '') + '>' + icon(symbol) + '<span>' + label + '</span></a>').join('');
   window.scrollTo(0, 0);
   if (focusHeading) view.querySelector('h1').focus({preventScroll:true});
@@ -203,7 +235,16 @@ function render(focusHeading = false) {
 view.addEventListener('change', handlePracticeChange);
 view.addEventListener('submit', handlePracticeSubmit);
 view.addEventListener('submit', handleNastyaSubmit);
+view.addEventListener('submit', handleNastyaTask);
+view.addEventListener('input', event => {
+  if (event.target.id === 'chat-message') saveNastyaDraft(event.target.value);
+});
 view.addEventListener('click', handlePrepareText);
+view.addEventListener('click', event => {
+  if (event.target.id === 'android-enable-push') window.AndroidReading?.enablePush();
+  if (event.target.id === 'android-copy-token') window.AndroidReading?.copyPushToken();
+});
+view.addEventListener('click', handleNotificationOpen);
 view.addEventListener('toggle', event => {
   const id = event.target.dataset?.open;
   if (!id) return;
@@ -213,6 +254,14 @@ view.addEventListener('toggle', event => {
 view.addEventListener('click', handleExerciseNavigation);
 view.addEventListener('click', handleReadingClick);
 window.addEventListener('hashchange', () => render(true));
+setInterval(() => {
+  if (!document.hidden && location.hash === '#notifications') loadNastyaFeed('notifications');
+},60000);
+try {
+  if (!location.hash && localStorage.getItem('dutch-resume-nastya') === '1') {
+    history.replaceState(null, '', '#nastya');
+  }
+} catch {}
 render();
 </script>
 </body>

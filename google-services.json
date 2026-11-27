@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "739986819096",
+    "project_id": "dutch-learning-4c6f9",
+    "storage_bucket": "dutch-learning-4c6f9.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:739986819096:android:49ca7ca396aaf8cce21b6d",
+        "android_client_info": {
+          "package_name": "com.dutch.salam"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBaBnzn0We1hsCon2XMT1ubTLFBZFYONUA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

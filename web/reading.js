@@ -283,11 +283,14 @@ function readingBody(text, interactive) {
 function readingArticle(text, interactive) {
   return '<article class="reading-sheet"><h1 lang="nl" tabindex="-1">' + escapeHtml(text.heading) +
     '</h1><p class="reading-range">Lüğət · ' + text.range + '</p>' +
-    readingBody(text, interactive) + '</article>';
+    (text.chapters ? text.chapters.map(chapter => '<section><h2 lang="nl">' +
+      escapeHtml(chapter.heading) + '</h2>' + readingBody({...text,paragraphs:chapter.paragraphs},interactive) +
+      '</section>').join('') : readingBody(text, interactive)) + '</article>';
 }
 const printReading = '<button type="button" id="print-reading" class="action">Print PDF</button>';
 function readingPage() {
   return '<div class="reading-index">' + title('Reading') + printReading +
+    (generatedStory ? '<a class="card reading-text" href="#reading-generated">' + escapeHtml(generatedStory.heading) + '</a>' : '') +
     readings.map((texts, index) => '<section class="reading-theme"><h2 lang="nl">' +
       themes[index].number + '. ' + escapeHtml(themes[index].title) + '</h2>' +
       texts.map(text => '<a class="card reading-text" href="#' + text.id + '"><h3 lang="nl">' +

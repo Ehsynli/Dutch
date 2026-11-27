@@ -45,7 +45,9 @@ function selectionControl(id, heading) {
 function vocabularyPage() {
   return title('Vocabulary', 'Məşq etmək istədiyin mövzuları və ya alt bölmələri işarələ.') +
     '<div class="practice-toolbar"><span id="selected-count">' + selected.size +
-    ' söz seçilib</span><a class="action" href="#exercises">Exercises</a></div>' +
+    ' söz seçilib</span><div><a class="action" href="#exercises">Exercises</a> ' +
+    '<button id="prepare-text" class="action" type="button"' + (storyBusy ? ' disabled' : '') +
+    '>Prepare Text</button></div></div><p id="prepare-status" role="status">' + escapeHtml(storyStatus) + '</p>' +
     themes.map(theme => {
       const id = 'theme-' + theme.number;
       const heading = theme.number + '. ' + theme.title;

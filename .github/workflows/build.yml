@@ -33,7 +33,7 @@ jobs:
       - name: Create Android App
         run: |
           mkdir -p app/src/main/java/com/dutch/salam app/src/main/assets
-          cp web/index.html web/vocabulary.js web/practice.js web/reading.js app/src/main/assets/
+          cp web/index.html web/vocabulary.js web/practice.js web/reading.js web/nastya.js app/src/main/assets/
 
           cat > settings.gradle <<'EOF'
           pluginManagement {
@@ -64,14 +64,15 @@ jobs:
                   applicationId 'com.dutch.salam'
                   minSdk 23
                   targetSdk 35
-                  versionCode 2
-                  versionName '1.1'
+                  versionCode 4
+                  versionName '1.3'
               }
           }
           EOF
 
           cat > app/src/main/AndroidManifest.xml <<'EOF'
           <manifest xmlns:android="http://schemas.android.com/apk/res/android">
+              <uses-permission android:name="android.permission.INTERNET"/>
               <application android:label="Dutch Learning"
                   android:theme="@android:style/Theme.Material.Light.NoActionBar">
                   <activity android:name=".MainActivity"

@@ -32,7 +32,8 @@ jobs:
 
       - name: Create Android App
         run: |
-          mkdir -p app/src/main/java/com/dutch/salam
+          mkdir -p app/src/main/java/com/dutch/salam app/src/main/assets
+          cp web/* app/src/main/assets/
           cp android/*.java app/src/main/java/com/dutch/salam/
           cp google-services.json app/google-services.json
 
@@ -66,14 +67,13 @@ jobs:
                   applicationId 'com.dutch.salam'
                   minSdk 23
                   targetSdk 35
-                  versionCode 5
-                  versionName '1.4'
+                  versionCode 6
+                  versionName '1.5'
               }
           }
           dependencies {
               implementation platform('com.google.firebase:firebase-bom:33.7.0')
               implementation 'com.google.firebase:firebase-messaging'
-              implementation 'androidx.browser:browser:1.8.0'
           }
           EOF
 

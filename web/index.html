@@ -1,0 +1,190 @@
+<!doctype html>
+<html lang="az">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#f8faf8">
+<title>Dutch Learning</title>
+<style>
+*{box-sizing:border-box}
+:root{font-family:system-ui,sans-serif;color:#203e30;background:#f8faf8}
+body{margin:0}
+main{width:min(100%,40rem);margin:auto;padding:2rem clamp(1rem,5vw,2.5rem) calc(7rem + env(safe-area-inset-bottom))}
+.brand{display:flex;align-items:center;gap:.65rem;font-size:.875rem;font-weight:800;letter-spacing:.15em}
+.flag{font-size:1.3rem;letter-spacing:0}
+header{margin:2rem 0 1.7rem}
+h1{font-size:clamp(2.7rem,9vw,4.5rem);letter-spacing:-.065em;line-height:1.05;margin:0 0 .65rem}
+p{color:#51675a;line-height:1.55;margin:0}
+.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:clamp(.65rem,3vw,1rem)}
+.tile{display:flex;min-height:8rem;flex-direction:column;justify-content:space-between;align-items:flex-start;gap:1rem;border-radius:1.3rem;padding:clamp(.8rem,4vw,1.35rem);font-weight:750;font-size:clamp(.95rem,4vw,1.2rem);color:inherit;text-decoration:none}
+.vocabulary{background:#e8f2e7;color:#284f36}
+.grammar{background:#e7eefb;color:#304a75}
+.exercises{background:#fff0dc;color:#80501e}
+.reading{background:#f0e8fa;color:#60437b}
+.tile:hover{filter:brightness(.97)}
+.icon{width:1.5rem;height:1.5rem;fill:none;stroke:currentColor;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}
+.tile .icon{width:1.85rem;height:1.85rem}
+.card{margin-top:1.2rem;padding:1.15rem 1.25rem;background:#fff;border:1px solid #dfe9e0;border-radius:1.25rem}
+.card h2{font-size:1rem;margin:0}
+.progress-head{display:flex;justify-content:space-between;align-items:center;gap:.5rem;margin-bottom:.8rem}
+progress{width:100%;height:.65rem;appearance:none;border:0;border-radius:1rem;background:#e8f2e7;display:block}
+progress::-webkit-progress-bar{background:#e8f2e7;border-radius:1rem}
+progress::-webkit-progress-value{background:#558b60;border-radius:1rem}
+progress::-moz-progress-bar{background:#558b60;border-radius:1rem}
+nav{position:fixed;z-index:1;inset:auto 0 0;background:#fff;border-top:1px solid #dfe9e0;padding-bottom:env(safe-area-inset-bottom)}
+.nav-inner{width:min(100%,40rem);margin:auto;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));padding:.35rem .35rem}
+nav a{display:grid;justify-items:center;gap:.25rem;padding:.45rem .1rem;color:#52695b;font-size:.875rem;text-decoration:none}
+nav a .icon{box-sizing:content-box;padding:.3rem .7rem;border-radius:1rem}
+nav a[aria-current=page]{color:#203e30;font-weight:750}
+nav a[aria-current=page] .icon{background:#e8f2e7}
+a:focus-visible,button:focus-visible{outline:2px solid #2c6945;outline-offset:3px}
+dl{margin:0}dl div{display:flex;justify-content:space-between;gap:1rem;padding:.6rem 0}dl div+div{border-top:1px solid #e8eee8}dd{margin:0;color:#51675a}
+button{font:inherit;color:inherit;background:#e8f2e7;border:1px solid #cedfd0;border-radius:.65rem;padding:.5rem .8rem;margin:.65rem .25rem .65rem 0;cursor:pointer}
+[hidden]{display:none!important}
+.practice-toolbar{display:flex;align-items:center;justify-content:space-between;gap:.75rem}
+.action{display:inline-block;background:#e8f2e7;border-radius:.65rem;padding:.55rem .8rem;color:#203e30;font-weight:700;text-decoration:none;margin:.25rem 0}
+.disclosure summary{cursor:pointer;font-weight:700;overflow-wrap:anywhere}
+summary:focus-visible,input:focus-visible{outline:2px solid #2c6945;outline-offset:3px}
+.subsections{margin-top:.65rem}
+.section-row{border-top:1px solid #e4ebe4;padding:.7rem 0}
+.vocabulary-group{position:relative}
+.vocabulary-group>details>summary{padding-inline-end:9.75rem;min-height:1.5rem}
+.select-exercises{position:absolute;z-index:1;inset-block-start:.58rem;inset-inline-end:0;display:flex;align-items:center;gap:.4rem;font-size:.875rem;color:#385746;cursor:pointer;padding:.12rem 0}
+.card.vocabulary-group>.select-exercises{inset-block-start:1.03rem;inset-inline-end:1.25rem}
+@media(max-width:34rem){
+  .vocabulary-group>details>summary{padding-inline-end:0;margin-block-end:.2rem}
+  .vocabulary-group{display:flex;flex-direction:column}
+  .select-exercises,.card.vocabulary-group>.select-exercises{position:static;align-self:flex-start;margin-block-end:.45rem}
+}
+input[type=checkbox],input[type=radio]{accent-color:#447656;width:1.15rem;height:1.15rem;margin:.12rem 0 0}
+.word-list{margin:.5rem 0 0;padding-inline-start:2rem}
+.word-list li{border-top:1px solid #edf1ed;padding:.55rem .15rem}
+.word-list li::marker{color:#51675a;font-variant-numeric:tabular-nums}
+.choice{display:flex;align-items:flex-start;gap:.6rem;padding:.55rem .15rem;cursor:pointer}
+.choice input{flex:none}
+.word-list strong{font-weight:600}
+.word-list small{font-size:.875rem;display:block;color:#51675a}
+fieldset{margin:0;padding:0;border:0;min-width:0}
+legend{font-weight:750}
+.sentence{font-size:1.25rem;color:#203e30;margin:.65rem 0 .15rem}
+.hint{font-size:.95rem;margin-bottom:.8rem}
+ .exercise-options{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:.55rem;margin:.85rem 0}
+.exercise-options .choice{border:1px solid #dce7dd;border-radius:.75rem;padding:.65rem;overflow-wrap:anywhere}
+.exercise-options .choice:has(input:checked){border-color:#588666;background:#edf6ee}
+.exercise-options .choice-correct{border-color:#588666;background:#e8f2e7}
+.exercise-options .choice-incorrect:has(input:checked){border-color:#b36456;background:#faeeea}
+.exercise-actions{display:flex;gap:.45rem;align-items:center;flex-wrap:wrap}
+.exercise-actions button{margin:.65rem 0 0}
+.submit-answer{background:#315f43;color:#fff;font-weight:700}
+.submit-answer:disabled{background:#e5ece6;color:#496354;cursor:default}
+.picture-prompt{display:grid;place-items:center;background:#f3f7f2;border-radius:1rem;min-height:8rem;font-size:4.5rem}
+@media(max-width:26rem){.exercise-options{grid-template-columns:1fr}}
+.vocabulary-progress-link{color:#315f43;font-weight:750;text-underline-offset:.2em}
+.correct{color:#25623b}.incorrect{color:#9b392d}
+.reading-theme{margin-top:1.6rem}
+.reading-theme h2{font-size:1.2rem;margin:0}
+.reading-text h3{margin:0}
+.reading-range{font-size:.875rem;margin:.15rem 0 .55rem;font-weight:650}
+.reading-text{display:block;color:inherit;text-decoration:none}
+.reading-text:hover,.reading-text:focus-visible{border-color:#629372;background:#f4f8f3}
+.reading-text .reading-range{margin-bottom:0}
+.reading-controls{display:flex;justify-content:space-between;align-items:center;gap:1rem;margin:1rem 0}
+.reading-controls a{color:#315f43;font-weight:700}
+.reading-sheet{background:#fff;border:1px solid #dfe9e0;border-radius:1.25rem;padding:clamp(1rem,4vw,2rem)}
+.reading-sheet h1{font-size:clamp(2rem,6vw,3rem);letter-spacing:-.035em}
+.reading-sheet p[lang=nl]{font-size:1.125rem;line-height:1.8;margin:1rem 0;color:#263b30}
+.reading-word{display:inline;background:none;border:0;padding:0;margin:0;color:#1359ad;text-decoration:none;font:inherit}
+.reading-word:hover{background:#e7eefb}
+.reading-print-all{display:none}
+#reading-gloss{width:min(26rem,calc(100% - 2rem));border:1px solid #b8cddc;border-radius:1rem;padding:1.25rem;color:#203e30}
+#reading-gloss::backdrop{background:#182f3c50}
+#reading-gloss form{float:right;margin-left:.5rem}
+#reading-gloss button{margin:0;padding:.25rem .6rem}
+#reading-gloss h2{font-size:1.1rem;margin:.2rem 0 .5rem}
+@page{size:A4;margin:20mm}
+@media print{
+  :root{background:#fff;color:#13261d}
+  main{width:auto;margin:0;padding:0}
+  nav,#print-reading,.reading-index,.reading-controls,#reading-gloss{display:none}
+  .reading-print-all{display:block}
+  .reading-print-all .reading-sheet+.reading-sheet{break-before:page}
+  main:has(.reading-sheet)>.brand{display:none}
+  .reading-sheet{border:0;border-radius:0;padding:8mm 9mm}
+  .reading-sheet h1{font-size:29pt;margin-bottom:4mm}
+  .reading-sheet p[lang=nl]{font-size:14.5pt;line-height:1.65;margin:6mm 0}
+  .reading-sheet .reading-range{font-size:11pt;margin-bottom:8mm}
+  .reading-word{color:#1359ad;print-color-adjust:exact}
+  header{margin:0 0 9mm}
+  h1{font-size:27pt}
+  .brand{margin-bottom:5mm}
+  .reading-theme{break-inside:avoid;margin-top:6mm}
+  .reading-text{margin-top:3mm;padding:3mm 4mm}
+  .reading-text p{font-size:11pt;color:#13261d}
+  .reading-text .reading-range{font-size:9pt}
+}
+</style>
+</head>
+<body>
+<svg aria-hidden="true" width="0" height="0" style="position:absolute" xmlns="http://www.w3.org/2000/svg">
+<symbol id="book" viewBox="0 0 24 24"><path d="M12 6v14M3 4h4a5 5 0 0 1 5 3 5 5 0 0 1 5-3h4v14h-4a7 7 0 0 0-5 2 7 7 0 0 0-5-2H3z"/></symbol>
+<symbol id="grammarIcon" viewBox="0 0 24 24"><path d="m3 18 5-12 5 12M5 14h6m10 4v-4a3 3 0 0 0-3-3h-2m5 3h-3a2 2 0 0 0 0 4h3"/></symbol>
+<symbol id="pencil" viewBox="0 0 24 24"><path d="m4 20 1-5L16 4a2 2 0 0 1 3 0l1 1a2 2 0 0 1 0 3L9 19zM14 6l4 4"/></symbol>
+<symbol id="readingIcon" viewBox="0 0 24 24"><path d="M5 3h10l4 4v14H5zM14 3v5h5M8 12h8m-8 4h8"/></symbol>
+<symbol id="house" viewBox="0 0 24 24"><path d="m3 10 9-7 9 7v10h-6v-6H9v6H3z"/></symbol>
+<symbol id="chart" viewBox="0 0 24 24"><path d="M3 20h18M6 16v-4m6 4V8m6 8V4"/></symbol>
+<symbol id="person" viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 21v-1a8 6 0 0 1 16 0v1"/></symbol>
+</svg>
+<main>
+<div class="brand"><span>DUTCH LEARNING</span><span class="flag" role="img" aria-label="Niderland bayrağı">🇳🇱</span></div>
+<div id="view"></div>
+</main>
+<nav aria-label="Əsas naviqasiya"><div class="nav-inner" id="nav"></div></nav>
+<script src="vocabulary.js"></script>
+<script src="practice.js"></script>
+<script src="reading.js"></script>
+<script>
+const icon = name => '<svg class="icon" aria-hidden="true"><use href="#' + name + '"></use></svg>';
+const menus = [
+  ['vocabulary', 'Vocabulary', 'book'],
+  ['grammar', 'Grammar', 'grammarIcon'],
+  ['exercises', 'Exercises', 'pencil'],
+  ['reading', 'Reading', 'readingIcon']
+];
+const navigation = [['home', 'Home', 'house'], menus[0], ['progress', 'Progress', 'chart'], ['profile', 'Profile', 'person']];
+const title = (heading, subtitle = '') => '<header><h1 tabindex="-1">' + heading + '</h1>' + (subtitle ? '<p>' + subtitle + '</p>' : '') + '</header>';
+const pages = {
+  vocabulary: vocabularyPage,
+  exercises: exercisePage,
+  progress: progressPage,
+  home: () => title('<span lang="nl">Welkom!</span>', 'Holland dilini birlikdə öyrənək.') + '<section class="grid" aria-label="Dərs bölmələri">' + menus.map(([key, label, symbol]) => '<a class="tile ' + key + '" href="#' + key + '">' + icon(symbol) + '<span>' + label + '</span></a>').join('') + '</section>' + progressCards(),
+  grammar: title('Grammar', 'İndiki zaman') + '<section class="card"><h2 lang="nl">Leren</h2><dl><div><dt lang="nl">ik</dt><dd lang="nl">leer</dd></div><div><dt lang="nl">jij / hij / zij</dt><dd lang="nl">leert</dd></div><div><dt lang="nl">wij / jullie / zij</dt><dd lang="nl">leren</dd></div></dl></section>',
+  reading: readingPage,
+  profile: title('Profile') + '<section class="card"><dl><div><dt>Öyrəndiyin dil</dt><dd>Holland dili</dd></div><div><dt>Nümunə gündəlik hədəf</dt><dd>20 söz</dd></div></dl></section>'
+};
+const view = document.getElementById('view');
+const nav = document.getElementById('nav');
+function render(focusHeading = false) {
+  const requested = location.hash.slice(1);
+  const reading = readingById.get(requested);
+  const page = reading ? 'reading' : Object.hasOwn(pages, requested) ? requested : 'home';
+  view.innerHTML = reading ? readingDetail(reading) : typeof pages[page] === 'function' ? pages[page]() : pages[page];
+  if (page === 'vocabulary') syncSelection();
+  nav.innerHTML = navigation.map(([key, label, symbol]) => '<a href="#' + key + '"' + (key === page ? ' aria-current="page"' : '') + '>' + icon(symbol) + '<span>' + label + '</span></a>').join('');
+  window.scrollTo(0, 0);
+  if (focusHeading) view.querySelector('h1').focus({preventScroll:true});
+}
+view.addEventListener('change', handlePracticeChange);
+view.addEventListener('submit', handlePracticeSubmit);
+view.addEventListener('toggle', event => {
+  const id = event.target.dataset?.open;
+  if (!id) return;
+  if (event.target.open) opened.add(id);
+  else opened.delete(id);
+}, true);
+view.addEventListener('click', handleExerciseNavigation);
+view.addEventListener('click', handleReadingClick);
+window.addEventListener('hashchange', () => render(true));
+render();
+</script>
+</body>
+</html>
